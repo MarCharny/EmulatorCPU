@@ -1,0 +1,44 @@
+BEGIN
+
+IN 
+POPR cx
+
+PUSHR cx
+PUSH 0
+JB .err
+
+PUSH 1 
+POPR ax
+
+.for:
+    PUSHR cx
+    PUSH 0
+    JBE .end
+
+    PUSHR cx
+    PUSHR ax
+    MUL
+    POPR ax
+
+    PUSHR cx
+    PUSH 1
+    SUB
+    POPR cx
+
+    JMP .for
+    
+.end:
+    PUSHR ax
+    OUT
+END
+
+.err:
+    PUSH -1
+    OUT
+
+END
+
+.err:
+    PUSH 0
+    OUT
+END

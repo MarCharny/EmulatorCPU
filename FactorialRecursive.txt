@@ -1,0 +1,45 @@
+BEGIN
+
+IN
+POPR bx
+
+PUSHR bx
+PUSHR bx
+PUSHR bx
+PUSH 0
+JB .err
+
+CALL .fact
+OUT
+
+END
+
+.fact:
+    PUSHR bx
+    PUSH 1
+    JBE .ret
+    
+    PUSH 1
+    SUB
+    POPR bx
+    PUSHR bx
+    PUSHR bx
+    CALL .fact
+    MUL
+    POPR bx
+    PUSHR bx
+    ST
+
+    RET
+
+.ret:
+    POP
+    RET
+END
+
+.err:
+    PUSH 0
+    OUT
+
+END
+END
